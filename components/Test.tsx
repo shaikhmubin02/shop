@@ -87,7 +87,7 @@ export default function Test() {
                   <PenToolIcon className="w-12 h-12 text-primary" />
                   <h3 className="text-xl font-bold">Graphic Design</h3>
                   <p className="text-sm text-muted-foreground text-center">
-                    Custom designs tailored to your brand's unique identity.
+                    Custom designs tailored to your brand&apos;s unique identity.
                   </p>
                 </CardContent>
               </Card>
@@ -219,7 +219,7 @@ export default function Test() {
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold">Get in Touch</h3>
                 <p className="text-muted-foreground">
-                  Have a project in mind? Fill out the form, and we'll get back to you as soon as possible.
+                  Have a project in mind? Fill out the form, and we&apos;ll get back to you as soon as possible.
                 </p>
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
