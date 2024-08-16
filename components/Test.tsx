@@ -8,6 +8,7 @@ import { PenToolIcon, PrinterIcon, BriefcaseIcon, GlobeIcon, PhoneIcon, MailIcon
 import { Card, CardContent } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Test() {
   const [darkMode, setDarkMode] = useState(false)
@@ -19,7 +20,7 @@ export default function Test() {
   }
 
   const testimonials = [
-    { name: "John Doe", company: "Tech Co", text: "CreativeHub transformed our brand identity. Highly recommended!" },
+    { name: "John Doe", company: "Tech Co", text: "CreativeSolutions transformed our brand identity. Highly recommended!" },
     { name: "Jane Smith", company: "Fashion Inc", text: "Their digital marketing strategies doubled our online sales." },
     { name: "Mike Johnson", company: "Local Cafe", text: "The print materials they designed for us are simply stunning." },
   ]
@@ -37,7 +38,7 @@ export default function Test() {
       <header className="px-4 lg:px-6 h-14 flex items-center">
         <Link className="flex items-center justify-center" href="#">
           <PenToolIcon className="h-6 w-6" />
-          <span className="ml-2 font-bold">CreativeHub</span>
+          <span className="ml-2 font-bold">CreativeSolutions</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6">
           <Link className="text-sm font-medium hover:underline underline-offset-4" href="#services">
@@ -64,7 +65,7 @@ export default function Test() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                  Welcome to CreativeHub
+                  Welcome to CreativeSolutions
                 </h1>
                 <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
                   Your one-stop shop for graphic design, printing, branding, and digital marketing solutions.
@@ -126,8 +127,10 @@ export default function Test() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {[1, 2, 3, 4, 5, 6].map((item) => (
                 <div key={item} className="aspect-square relative overflow-hidden rounded-lg">
-                  <img
-                    src={`/placeholder.svg?height=300&width=300`}
+                  <Image
+                    src={`/placeholder.svg`}
+                    width={300}
+                    height={300}
                     alt={`Portfolio item ${item}`}
                     className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
                   />
@@ -221,11 +224,11 @@ export default function Test() {
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <PhoneIcon className="w-4 h-4" />
-                    <span>+1 (555) 123-4567</span>
+                    <span>+91 12345 54321</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <MailIcon className="w-4 h-4" />
-                    <span>info@creativehub.com</span>
+                    <span>info@CreativeSolutions.com</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <MapPinIcon className="w-4 h-4" />
@@ -247,7 +250,7 @@ export default function Test() {
         </section>
       </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-muted-foreground">© 2023 CreativeHub. All rights reserved.</p>
+        <p className="text-xs text-muted-foreground">© 2024 CreativeSolutions. All rights reserved.</p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
           <Link className="text-xs hover:underline underline-offset-4" href="#">
             Terms of Service
