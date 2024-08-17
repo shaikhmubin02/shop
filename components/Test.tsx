@@ -6,13 +6,30 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { PenToolIcon, PrinterIcon, BriefcaseIcon, GlobeIcon, PhoneIcon, MailIcon, MapPinIcon, MoonIcon, SunIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import { motion } from 'framer-motion'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Link from 'next/link'
 import Image from 'next/image'
+import { MobileNav } from './MobileNav'
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 60 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 }
+}
+
+const staggerChildren = {
+  animate: { transition: { staggerChildren: 0.1 } }
+}
 
 export default function Test() {
   const [darkMode, setDarkMode] = useState(false)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
@@ -36,88 +53,116 @@ export default function Test() {
   return (
     <div className={`flex flex-col min-h-screen ${darkMode ? 'dark' : ''}`}>
       <header className="px-4 lg:px-6 h-14 flex items-center">
-        <Link className="flex items-center justify-center" href="#">
+        <Link className="flex items-center justify-center ml-auto md:ml-0 md:mr-auto" href="#">
           <PenToolIcon className="h-6 w-6" />
           <span className="ml-2 font-bold">CreativeSolutions</span>
         </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#services">
-            Services
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#portfolio">
-            Portfolio
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#pricing">
-            Pricing
-          </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#contact">
-            Contact
-          </Link>
-        </nav>
-        <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="ml-4">
+  
+        {/* Mobile View: Dark Mode Icon and MobileNav */}
+        <div className="flex items-center md:hidden ml-auto">
+          <Button variant="ghost" size="icon" onClick={toggleDarkMode}>
           {darkMode ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
           <span className="sr-only">Toggle dark mode</span>
         </Button>
+          <MobileNav />
+        </div>
+  
+       {/* Dektop View: Navigation Links */}
+       <nav className="hidden md:flex ml-auto gap-4 sm:gap-6">
+         <Link className="text-sm font-medium hover:underline underline-offset-4" href="#services">
+          Services
+         </Link>
+        <Link className="text-sm font-medium hover:underline underline-offset-4" href="#portfolio">
+          Portfolio
+        </Link>
+        <Link className="text-sm font-medium hover:underline underline-offset-4" href="#pricing">
+          Pricing
+        </Link>
+        <Link className="text-sm font-medium hover:underline underline-offset-4" href="#contact">
+          Contact
+        </Link>
+      </nav>
+      {/* Desktop View: Dark Mode Icon */}
+        <div className="hidden md:flex">
+        <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="ml-4">
+        {darkMode ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
+        <span className="sr-only">Toggle dark mode</span>
+        </Button>
+        </div>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-background">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                  Welcome to CreativeSolutions
-                </h1>
-                <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-                  Your one-stop shop for graphic design, printing, branding, and digital marketing solutions.
-                </p>
-              </div>
-              <div className="space-x-4">
-                <Button>Get Started</Button>
-                <Button variant="outline">Learn More</Button>
-              </div>
-            </div>
-          </div>
-        </section>
+      <motion.section 
+  className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-background"
+  variants={staggerChildren}
+  initial="initial"
+  animate="animate"
+>
+  <video 
+    className="absolute inset-0 w-full h-full object-cover z-0 border-none"
+    src="https://videos.pexels.com/video-files/4457865/4457865-sd_640_360_24fps.mp4" 
+    autoPlay 
+    muted 
+    loop 
+  />
+  <div className="relative z-10">
+    <div className="container px-4 md:px-6">
+      <div className="flex flex-col items-center space-y-4 text-center">
+        <motion.div className="space-y-2" variants={fadeInUp}>
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+            <span className="text-black">Welcome to </span>
+            <span className="text-black">Creative</span>
+            <span className="text-black">Solutions</span> 
+          </h1>
+          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl text-black">
+            Your one-stop shop for graphic design, printing, branding, and digital marketing solutions.
+          </p>
+        </motion.div>
+        <motion.div className="space-x-4" variants={fadeInUp}>
+          <Button asChild>
+            <Link href="#services">Get Started</Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="#about">Learn More</Link>
+          </Button>
+        </motion.div>
+      </div>
+    </div>
+  </div>
+</motion.section>
         <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">Our Services</h2>
+            <motion.h2 
+              className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8"
+              {...fadeInUp}
+            >
+              Our Services
+            </motion.h2>
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-              <Card>
-                <CardContent className="flex flex-col items-center space-y-2 p-4">
-                  <PenToolIcon className="w-12 h-12 text-primary" />
-                  <h3 className="text-xl font-bold">Graphic Design</h3>
-                  <p className="text-sm text-muted-foreground text-center">
-                    Custom designs tailored to your brand&apos;s unique identity.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="flex flex-col items-center space-y-2 p-4">
-                  <PrinterIcon className="w-12 h-12 text-primary" />
-                  <h3 className="text-xl font-bold">Printing</h3>
-                  <p className="text-sm text-muted-foreground text-center">
-                    High-quality printing services for all your business needs.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="flex flex-col items-center space-y-2 p-4">
-                  <BriefcaseIcon className="w-12 h-12 text-primary" />
-                  <h3 className="text-xl font-bold">Branding</h3>
-                  <p className="text-sm text-muted-foreground text-center">
-                    Develop a strong, cohesive brand identity that stands out.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="flex flex-col items-center space-y-2 p-4">
-                  <GlobeIcon className="w-12 h-12 text-primary" />
-                  <h3 className="text-xl font-bold">Digital Marketing</h3>
-                  <p className="text-sm text-muted-foreground text-center">
-                    Boost your online presence and reach your target audience.
-                  </p>
-                </CardContent>
-              </Card>
+              {[
+                { href: "/services/graphic-design", icon: PenToolIcon, title: "Graphic Design", description: "Custom designs tailored to your brand's unique identity." },
+                { href: "/services/printing", icon: PrinterIcon, title: "Printing", description: "High-quality printing services for all your business needs." },
+                { href: "/services/branding", icon: BriefcaseIcon, title: "Branding", description: "Develop a strong, cohesive brand identity that stands out." },
+                { href: "/services/digital-marketing", icon: GlobeIcon, title: "Digital Marketing", description: "Boost your online presence and reach your target audience." }
+              ].map((service, index) => (
+                <motion.div
+                  key={service.href}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Link href={service.href} passHref>
+                    <Card className="cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                      <CardContent className="flex flex-col items-center space-y-2 p-4">
+                        <service.icon className="w-12 h-12 text-primary" />
+                        <h3 className="text-xl font-bold">{service.title}</h3>
+                        <p className="text-sm text-muted-foreground text-center">
+                          {service.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
