@@ -52,7 +52,7 @@ export default function GraphicDesignPage() {
         className="text-xl mb-8 text-muted-foreground"
         variants={fadeInUp}
       >
-        Our graphic design services bring your ideas to life with stunning visuals that capture your brand's essence.
+        Our graphic design services bring your ideas to life with stunning visuals that capture your brand&apos;s essence.
         From logos to marketing materials, we create designs that leave a lasting impression.
       </motion.p>
       <motion.div 

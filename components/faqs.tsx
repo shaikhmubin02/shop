@@ -30,7 +30,7 @@ export default function Faqs() {
               </CollapsibleTrigger>
               <CollapsibleContent className="mt-4 text-muted-foreground">
                 To cancel your subscription, simply log into your account and navigate to the Billing section. From
-                there, you can cancel your plan at any time. We'll be sad to see you go, but we understand that your
+                there, you can cancel your plan at any time. We&apos;ll be sad to see you go, but we understand that your
                 needs may change.
               </CollapsibleContent>
             </Collapsible>

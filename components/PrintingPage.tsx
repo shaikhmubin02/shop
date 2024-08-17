@@ -53,7 +53,7 @@ export default function PrintingPage() {
         variants={fadeInUp}
       >
         Our state-of-the-art printing services ensure your designs are reproduced with precision and quality.
-        From business cards to large format prints, we've got all your printing needs covered.
+        From business cards to large format prints, we&apos;ve got all your printing needs covered.
       </motion.p>
       <motion.div 
         className="grid md:grid-cols-2 gap-6 mb-12"
