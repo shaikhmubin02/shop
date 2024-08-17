@@ -12,6 +12,47 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MobileNav } from './MobileNav'
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
+import TestimonialSlider from "@/components/testimonials-slider";
+import Faqs from './faqs'
+
+const testimonials = [
+  {
+    quote:"CreativeSolutions transformed our brand identity. Highly recommended!",
+    name: "Rose Roberson",
+    role: "Tech Co",
+    imgSrc: "https://i.pravatar.cc/120?img=1",
+  },
+  {
+    quote:"Their digital marketing strategies doubled our online sales.",
+    name: "Chace Rodgers",
+    role: "Fashion Inc",
+    imgSrc: "https://i.pravatar.cc/120?img=10",
+  },
+  {
+    quote:"The print materials they designed for us are simply stunning.",
+    name: "Cornelius Sheppard",
+    role: "Local Cafe",
+    imgSrc: "https://i.pravatar.cc/120?img=9",
+  },
+  {
+    quote:"CreativeSolutions transformed our brand identity. Highly recommended!",
+    name: "Rose Roberson",
+    role: "Tech Co",
+    imgSrc: "https://i.pravatar.cc/120?img=1",
+  },
+  {
+    quote:"Their digital marketing strategies doubled our online sales.",
+    name: "Chace Rodgers",
+    role: "Fashion Inc",
+    imgSrc: "https://i.pravatar.cc/120?img=10",
+  },
+  {
+    quote:"The print materials they designed for us are simply stunning.",
+    name: "Cornelius Sheppard",
+    role: "Local Cafe",
+    imgSrc: "https://i.pravatar.cc/120?img=9",
+  },
+];
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -36,12 +77,6 @@ export default function Test() {
     setDarkMode(!darkMode)
     document.documentElement.classList.toggle('dark')
   }
-
-  const testimonials = [
-    { name: "John Doe", company: "Tech Co", text: "CreativeSolutions transformed our brand identity. Highly recommended!" },
-    { name: "Jane Smith", company: "Fashion Inc", text: "Their digital marketing strategies doubled our online sales." },
-    { name: "Mike Johnson", company: "Local Cafe", text: "The print materials they designed for us are simply stunning." },
-  ]
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
@@ -216,7 +251,9 @@ export default function Test() {
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">What Our Clients Say</h2>
-            <div className="relative max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground tracking-tighter font-bold sm:text-4xl md:text-xl text-center mb-4">Hear from our satisfied customers about their experience working with us.</p>
+            <TestimonialSlider testimonials={testimonials} />
+            {/* <div className="relative max-w-2xl mx-auto">
               <Card>
                 <CardContent className="p-6">
                   <p className="text-lg mb-4">{testimonials[currentTestimonial].text}</p>
@@ -232,7 +269,7 @@ export default function Test() {
                 <ChevronRightIcon className="h-4 w-4" />
                 <span className="sr-only">Next testimonial</span>
               </Button>
-            </div>
+            </div> */}
           </div>
         </section>
         <section id="pricing" className="w-full py-12 md:py-24 lg:py-32 bg-background">
@@ -262,39 +299,22 @@ export default function Test() {
           </div>
         </section>
         <section id="faq" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">Frequently Asked Questions</h2>
-            <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto">
-              <AccordionItem value="item-1">
-                <AccordionTrigger>What services do you offer?</AccordionTrigger>
-                <AccordionContent>
-                  We offer a wide range of services including graphic design, printing, branding, and digital marketing solutions tailored to your business needs.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>How long does a typical project take?</AccordionTrigger>
-                <AccordionContent>
-                  Project timelines vary depending on the scope and complexity. We work closely with our clients to establish realistic deadlines and deliver high-quality results.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>Do you offer package deals?</AccordionTrigger>
-                <AccordionContent>
-                  Yes, we offer various package deals that combine our services for better value. Please contact us for more information on our current packages.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
+          <Faqs />
         </section>
         <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-background">
           <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">Contact Us</h2>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-16">Contact Us</h2>
             <div className="grid gap-10 lg:grid-cols-2">
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold">Get in Touch</h3>
-                <p className="text-muted-foreground">
-                  Have a project in mind? Fill out the form, and we&apos;ll get back to you as soon as possible.
-                </p>
+                <div>
+                  <p className="text-muted-foreground">
+                    Have a project in mind?
+                  </p>
+                  <p className="text-muted-foreground">
+                    Fill out the form, and we&apos;ll get back to you as soon as possible.
+                  </p>
+                </div>
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <PhoneIcon className="w-4 h-4" />
