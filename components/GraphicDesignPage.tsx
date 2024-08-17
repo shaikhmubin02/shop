@@ -115,8 +115,10 @@ export default function GraphicDesignPage() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.8 }}
-        >
+        > 
+        <Link href="/services/graphic-design/designconsultation" prefetch={false}>
           <Button size="lg">Request a Design Consultation</Button>
+        </Link>
         </motion.div>
       </motion.div>
     </motion.div>

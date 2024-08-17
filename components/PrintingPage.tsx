@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { PrinterIcon, FileTextIcon, ImageIcon, BookOpenIcon, PackageIcon, TagIcon } from "lucide-react"
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -116,7 +117,9 @@ export default function PrintingPage() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.8 }}
         >
-          <Button size="lg">Get a Printing Quote</Button>
+        <Link href="/services/printing/quote" prefetch={false}>
+        <Button size="lg">Get a Printing Quote</Button>
+        </Link>
         </motion.div>
       </motion.div>
     </motion.div>
