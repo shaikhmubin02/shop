@@ -246,17 +246,60 @@ export default function Test() {
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">Our Portfolio</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {[1, 2, 3, 4, 5, 6].map((item) => (
-                <div key={item} className="aspect-square relative overflow-hidden rounded-lg">
-                  <Image
-                    src={`/placeholder.svg`}
-                    width={300}
-                    height={300}
-                    alt={`Portfolio item ${item}`}
-                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                  />
-                </div>
-              ))}
+              <div className="aspect-square relative overflow-hidden rounded-lg">
+                <Image
+                  src={`/gd1.avif`}
+                  width={300}
+                  height={300}
+                  alt='gd1'
+                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                />
+              </div>
+              <div className="aspect-square relative overflow-hidden rounded-lg">
+                <Image
+                  src={`/gd2.avif`}
+                  width={300}
+                  height={300}
+                  alt='gd2'
+                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                />
+              </div>
+              <div className="aspect-square relative overflow-hidden rounded-lg">
+                <Image
+                  src={`/gd3.avif`}
+                  width={300}
+                  height={300}
+                  alt='gd3'
+                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                />
+              </div>
+              <div className="aspect-square relative overflow-hidden rounded-lg">
+                <Image
+                  src={`/gd4.avif`}
+                  width={300}
+                  height={300}
+                  alt='gd4'
+                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                />
+              </div>
+              <div className="aspect-square relative overflow-hidden rounded-lg">
+                <Image
+                  src={`/gd5.avif`}
+                  width={300}
+                  height={300}
+                  alt='gd5'
+                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                />
+              </div>
+              <div className="aspect-square relative overflow-hidden rounded-lg">
+                <Image
+                  src={`/gd6.avif`}
+                  width={300}
+                  height={300}
+                  alt='gd6'
+                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -265,23 +308,6 @@ export default function Test() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">What Our Clients Say</h2>
             <p className="text-xl text-muted-foreground tracking-tighter font-bold sm:text-4xl md:text-xl text-center mb-4">Hear from our satisfied customers about their experience working with us.</p>
             <TestimonialSlider testimonials={testimonials} />
-            {/* <div className="relative max-w-2xl mx-auto">
-              <Card>
-                <CardContent className="p-6">
-                  <p className="text-lg mb-4">{testimonials[currentTestimonial].text}</p>
-                  <p className="font-semibold">{testimonials[currentTestimonial].name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonials[currentTestimonial].company}</p>
-                </CardContent>
-              </Card>
-              <Button variant="outline" size="icon" className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2" onClick={prevTestimonial}>
-                <ChevronLeftIcon className="h-4 w-4" />
-                <span className="sr-only">Previous testimonial</span>
-              </Button>
-              <Button variant="outline" size="icon" className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2" onClick={nextTestimonial}>
-                <ChevronRightIcon className="h-4 w-4" />
-                <span className="sr-only">Next testimonial</span>
-              </Button>
-            </div> */}
           </div>
         </section>
         <section id="pricing" className="w-full py-12 md:py-24 lg:py-32 bg-background">
@@ -310,8 +336,14 @@ export default function Test() {
             </div>
           </div>
         </section>
-        <section id="faq" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-          <Faqs />
+        <section
+          id="faq"
+          className="w-full py-12 md:py-24 lg:py-32 bg-muted"
+          style={{ backgroundImage: "url('/faqbg1.avif')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+        >
+          <div className="container mx-auto px-4 bg-white bg-opacity-80">
+            <Faqs />
+          </div>
         </section>
         <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-background">
           <div className="container px-4 md:px-6">
@@ -330,15 +362,15 @@ export default function Test() {
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <PhoneIcon className="w-4 h-4" />
-                    <span>+91 12345 54321</span>
+                    <span>+91 97255 50433</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <MailIcon className="w-4 h-4" />
-                    <span>info@CreativeSolutions.com</span>
+                    <span>thecreativesurat@gmail.com</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <MapPinIcon className="w-4 h-4" />
-                    <span>123 Creative St, Design City, 12345</span>
+                    <span>18, Nandanvan Society, Ghod Dod Road, Surat - 395001</span>
                   </div>
                 </div>
               </div>
