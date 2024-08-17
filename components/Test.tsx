@@ -92,43 +92,43 @@ export default function Test() {
       </header>
       <main className="flex-1">
       <motion.section 
-  className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-background"
-  variants={staggerChildren}
-  initial="initial"
-  animate="animate"
->
-  <video 
-    className="absolute inset-0 w-full h-full object-cover z-0 border-none"
-    src="https://videos.pexels.com/video-files/4457865/4457865-sd_640_360_24fps.mp4" 
-    autoPlay 
-    muted 
-    loop 
-  />
-  <div className="relative z-10">
-    <div className="container px-4 md:px-6">
-      <div className="flex flex-col items-center space-y-4 text-center">
-        <motion.div className="space-y-2" variants={fadeInUp}>
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-            <span className="text-black">Welcome to </span>
-            <span className="text-black">Creative</span>
-            <span className="text-black">Solutions</span> 
-          </h1>
-          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl text-black">
-            Your one-stop shop for graphic design, printing, branding, and digital marketing solutions.
-          </p>
-        </motion.div>
-        <motion.div className="space-x-4" variants={fadeInUp}>
-          <Button asChild>
-            <Link href="#services">Get Started</Link>
-          </Button>
-          <Button variant="outline" asChild>
-            <Link href="#about">Learn More</Link>
-          </Button>
-        </motion.div>
-      </div>
-    </div>
-  </div>
-</motion.section>
+          className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-background"
+          variants={staggerChildren}
+          initial="initial"
+          animate="animate"
+        >
+          <video 
+            className="absolute inset-0 w-full h-full object-cover z-0 border-none"
+            src="/videos/herovideo.mp4" 
+            autoPlay
+            muted 
+            loop 
+          />
+          <div className="relative z-10">
+            <div className="container px-4 md:px-6">
+              <div className="flex flex-col items-center space-y-4 text-center">
+                <motion.div className="space-y-2" variants={fadeInUp}>
+                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                    <span className="text-black">Welcome to </span>
+                    <span className="text-black">Creative</span>
+                    <span className="text-black">Solutions</span> 
+                  </h1>
+                  <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl text-black">
+                    Your one-stop shop for graphic design, printing, branding, and digital marketing solutions.
+                  </p>
+                </motion.div>
+                <motion.div className="space-x-4" variants={fadeInUp}>
+                  <Button asChild>
+                    <Link href="#services">Get Started</Link>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link href="#about">Learn More</Link>
+                  </Button>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
         <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
           <div className="container px-4 md:px-6">
             <motion.h2 
