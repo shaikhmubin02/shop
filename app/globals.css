@@ -161,6 +161,10 @@
   }
 }
 
+.auth-page {
+  @apply flex h-screen w-full flex-col items-center justify-center gap-10;
+}
+
 @layer base {
   * {
     @apply border-border !scroll-smooth;

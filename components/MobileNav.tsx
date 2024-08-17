@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { MenuIcon } from "lucide-react"
+import { SignedIn, UserButton } from '@clerk/nextjs'
 
 const navItems = [
   { href: '/', label: 'Home' },

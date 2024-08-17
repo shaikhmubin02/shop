@@ -9,11 +9,12 @@ import { Card, CardContent } from "@/components/ui/card"
 import { motion } from 'framer-motion'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Link from 'next/link'
-import Image from 'next/image'
 import { MobileNav } from './MobileNav'
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import TestimonialSlider from "@/components/testimonials-slider";
 import Faqs from './faqs'
+import { SignedIn, SignInButton, UserButton, SignedOut} from '@clerk/nextjs'
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -89,10 +90,16 @@ export default function Test() {
   return (
     <div className={`flex flex-col min-h-screen ${darkMode ? 'dark' : ''}`}>
       <header className="px-4 lg:px-6 h-14 flex items-center">
+      <div  className="flex items-center justify-center p-0 md:hidden ">
+      <SignedIn>
+            <UserButton />
+          </SignedIn>
+      </div>
         <Link className="flex items-center justify-center ml-auto md:ml-0 md:mr-auto" href="#">
-          <PenToolIcon className="h-6 w-6" />
+          <Image src='/logo.png' alt='logo' width={20} height={20}/>
           <span className="ml-2 font-bold text-lg">Creative</span>
-          <span className="mt-1 font-normal text-sm leading-tight italic">Solutions</span>
+          <span className="text-lg">Solutions</span>
+          {/* <span className="mt-1 font-normal text-sm leading-tight italic">Solutions</span> */}
 
         </Link>
   
@@ -152,6 +159,11 @@ export default function Test() {
         {darkMode ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
         <span className="sr-only">Toggle dark mode</span>
         </Button>
+        <div className="flex items-center gap-2 lg:gap-4">
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </div>
         </div>
       </header>
       <main className="flex-1">
