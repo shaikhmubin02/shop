@@ -69,8 +69,8 @@ export default function TestimonialSlider({
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2 fill-black" />
-            <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2 fill-black" />
+            <CarouselPrevious className="absolute left-[-25px] top-1/2 -translate-y-1/2 fill-black lg:left-[-50px]" />
+            <CarouselNext className="absolute right-[-25px] top-1/2 -translate-y-1/2 fill-black lg:right-[-50px]" />
           </Carousel>
         </div>
       </section>

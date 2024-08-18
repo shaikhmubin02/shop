@@ -373,7 +373,7 @@ export default function Test( {email}: {email: string}) {
                 </div>
               </div>
               <div className="relative space-y-4">
-                <div className="relative bg-white bg-opacity-75 p-6 rounded-lg shadow-lg">
+                <div className="relative bg-white bg-opacity-75 p-6 rounded-lg shadow-xl">
                   <form className="space-y-4">
                     <Input placeholder="Your Name" />
                     <Input type="email" placeholder="Your Email" />
