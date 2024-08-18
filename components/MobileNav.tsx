@@ -1,22 +1,32 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { MenuIcon } from "lucide-react"
-import { SignedIn, UserButton } from '@clerk/nextjs'
-
-const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '#services', label: 'Services' },
-  { href: '#Portfolio', label: 'Portfolio' },
-  { href: '#Pricing', label: 'Pricing' },
-  { href: '#contact', label: 'Contact' },
-]
+import { useUser } from '@clerk/nextjs'
 
 export function MobileNav() {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
+  const { user } = useUser();
+  const [navItems, setNavItems] = useState([
+    { href: '/', label: 'Home' },
+    { href: '#services', label: 'Services' },
+    { href: '#Portfolio', label: 'Portfolio' },
+    { href: '#Pricing', label: 'Pricing' },
+    { href: '#contact', label: 'Contact' },
+  ]);
+
+  useEffect(() => {
+    if (user?.emailAddresses[0]?.emailAddress === "shaikhmubin572@gmail.com") {
+      setNavItems(prevItems => [
+        { href: '/', label: 'Home' },
+        { href: '/admin', label: 'Admin' },
+        ...prevItems.slice(1),
+      ]);
+    }
+  }, [user]);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>

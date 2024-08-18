@@ -104,15 +104,14 @@ export default function Test( {email}: {email: string}) {
       <header className="px-4 lg:px-6 h-14 flex items-center">
       <div  className="flex items-center justify-center p-0 md:hidden ">
       <SignedIn>
-            <UserButton />
-          </SignedIn>
+        <UserButton />
+      </SignedIn>
       </div>
         <Link className="flex items-center justify-center ml-auto md:ml-0 md:mr-auto" href="#">
           <Image src='/logo.png' alt='logo' width={20} height={20}/>
           <span className="ml-2 font-bold text-lg">Creative</span>
           <span className="text-lg">Solutions</span>
           {/* <span className="mt-1 font-normal text-sm leading-tight italic">Solutions</span> */}
-
         </Link>
   
         {/* Mobile View: Dark Mode Icon and MobileNav */}
@@ -126,35 +125,40 @@ export default function Test( {email}: {email: string}) {
   
        {/* Dektop View: Navigation Links */}
        <nav className="hidden md:flex ml-auto gap-4 sm:gap-6">
-       <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Link  className="text-sm font-medium hover:underline underline-offset-4" href="#" prefetch={false}>
-                Services
+        {email === "shaikhmubin572@gmail.com" && (
+          <Link className="text-sm font-medium hover:underline underline-offset-4" href="/admin">
+            Admin
+          </Link>
+        )}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Link  className="text-sm font-medium hover:underline underline-offset-4" href="#" prefetch={false}>
+              Services
+            </Link>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start">
+            <DropdownMenuItem>
+              <Link href="/services/graphic-design" className="block px-4 py-2 text-sm hover:bg-muted" prefetch={false}>
+                Graphic Design
               </Link>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuItem>
-                <Link href="/services/graphic-design" className="block px-4 py-2 text-sm hover:bg-muted" prefetch={false}>
-                  Graphic Design
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/services/printing" className="block px-4 py-2 text-sm hover:bg-muted" prefetch={false}>
-                  Printing
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/services/branding" className="block px-4 py-2 text-sm hover:bg-muted" prefetch={false}>
-                  Branding
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/services/digital-marketing" className="block px-4 py-2 text-sm hover:bg-muted" prefetch={false}>
-                  Digital Marketing
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/services/printing" className="block px-4 py-2 text-sm hover:bg-muted" prefetch={false}>
+                Printing
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/services/branding" className="block px-4 py-2 text-sm hover:bg-muted" prefetch={false}>
+                Branding
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/services/digital-marketing" className="block px-4 py-2 text-sm hover:bg-muted" prefetch={false}>
+                Digital Marketing
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         <Link className="text-sm font-medium hover:underline underline-offset-4" href="#portfolio">
           Portfolio
         </Link>
