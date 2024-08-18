@@ -55,6 +55,16 @@ const testimonials = [
   },
 ];
 
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.5 } }
+}
+
+const staggerContainer = {
+  animate: { transition: { staggerChildren: 0.1 } }
+}
+
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
   animate: { opacity: 1, y: 0 },
@@ -243,65 +253,76 @@ export default function Test() {
           </div>
         </section>
         <section id="portfolio" className="w-full py-12 md:py-24 lg:py-32 bg-background">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">Our Portfolio</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              <div className="aspect-square relative overflow-hidden rounded-lg">
-                <Image
-                  src={`/gd1.avif`}
-                  width={300}
-                  height={300}
-                  alt='gd1'
-                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                />
-              </div>
-              <div className="aspect-square relative overflow-hidden rounded-lg">
-                <Image
-                  src={`/gd2.avif`}
-                  width={300}
-                  height={300}
-                  alt='gd2'
-                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                />
-              </div>
-              <div className="aspect-square relative overflow-hidden rounded-lg">
-                <Image
-                  src={`/gd3.avif`}
-                  width={300}
-                  height={300}
-                  alt='gd3'
-                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                />
-              </div>
-              <div className="aspect-square relative overflow-hidden rounded-lg">
-                <Image
-                  src={`/gd4.avif`}
-                  width={300}
-                  height={300}
-                  alt='gd4'
-                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                />
-              </div>
-              <div className="aspect-square relative overflow-hidden rounded-lg">
-                <Image
-                  src={`/gd5.avif`}
-                  width={300}
-                  height={300}
-                  alt='gd5'
-                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                />
-              </div>
-              <div className="aspect-square relative overflow-hidden rounded-lg">
-                <Image
-                  src={`/gd6.avif`}
-                  width={300}
-                  height={300}
-                  alt='gd6'
-                  className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                />
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >  
+            <div className="container px-4 md:px-6">
+              <motion.h2 
+                className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8"
+                variants={fadeInUp}
+              >
+                Our Portfolio
+              </motion.h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="aspect-square relative overflow-hidden rounded-lg">
+                  <Image
+                    src={`/gd1.avif`}
+                    width={300}
+                    height={300}
+                    alt="gd1"
+                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                  />
+                </div>
+                <div className="aspect-square relative overflow-hidden rounded-lg">
+                  <Image
+                    src={`/gd2.avif`}
+                    width={300}
+                    height={300}
+                    alt="gd2"
+                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                  />
+                </div>
+                <div className="aspect-square relative overflow-hidden rounded-lg">
+                  <Image
+                    src={`/gd3.avif`}
+                    width={300}
+                    height={300}
+                    alt="gd3"
+                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                  />
+                </div>
+                <div className="aspect-square relative overflow-hidden rounded-lg">
+                  <Image
+                    src={`/gd4.avif`}
+                    width={300}
+                    height={300}
+                    alt="gd4"
+                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                  />
+                </div>
+                <div className="aspect-square relative overflow-hidden rounded-lg">
+                  <Image
+                    src={`/gd5.avif`}
+                    width={300}
+                    height={300}
+                    alt="gd5"
+                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                  />
+                </div>
+                <div className="aspect-square relative overflow-hidden rounded-lg">
+                  <Image
+                    src={`/gd6.avif`}
+                    width={300}
+                    height={300}
+                    alt="gd6"
+                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                  />
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
         <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
           <div className="container px-4 md:px-6">
