@@ -341,7 +341,7 @@ export default function Test() {
           className="w-full py-12 md:py-24 lg:py-32 bg-muted"
           style={{ backgroundImage: "url('/faqbg1.avif')", backgroundSize: 'cover', backgroundPosition: 'center' }}
         >
-          <div className="container mx-auto px-4 bg-white bg-opacity-80">
+          <div className="container mx-auto px-4 bg-white bg-opacity-70 rounded-lg">
             <Faqs />
           </div>
         </section>
