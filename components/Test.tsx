@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -15,6 +15,7 @@ import TestimonialSlider from "@/components/testimonials-slider";
 import Faqs from './faqs'
 import { SignedIn, SignInButton, UserButton, SignedOut} from '@clerk/nextjs'
 import Image from "next/image";
+import Services from './Services'
 
 const testimonials = [
   {
@@ -75,7 +76,8 @@ const staggerChildren = {
   animate: { transition: { staggerChildren: 0.1 } }
 }
 
-export default function Test() {
+export default function Test( {email}: {email: string}) {
+
   const [darkMode, setDarkMode] = useState(false)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -176,7 +178,6 @@ export default function Test() {
         </div>
         </div>
       </header>
-      <main className="flex-1">
       <motion.section 
           className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-background"
           variants={staggerChildren}
@@ -215,43 +216,7 @@ export default function Test() {
             </div>
           </div>
         </motion.section>
-        <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-          <div className="container px-4 md:px-6">
-            <motion.h2 
-              className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8"
-              {...fadeInUp}
-            >
-              Our Services
-            </motion.h2>
-            <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                { href: "/services/graphic-design", icon: PenToolIcon, title: "Graphic Design", description: "Custom designs tailored to your brand's unique identity." },
-                { href: "/services/printing", icon: PrinterIcon, title: "Printing", description: "High-quality printing services for all your business needs." },
-                { href: "/services/branding", icon: BriefcaseIcon, title: "Branding", description: "Develop a strong, cohesive brand identity that stands out." },
-                { href: "/services/digital-marketing", icon: GlobeIcon, title: "Digital Marketing", description: "Boost your online presence and reach your target audience." }
-              ].map((service, index) => (
-                <motion.div
-                  key={service.href}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Link href={service.href} passHref>
-                    <Card className="cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                      <CardContent className="flex flex-col items-center space-y-2 p-4">
-                        <service.icon className="w-12 h-12 text-primary" />
-                        <h3 className="text-xl font-bold">{service.title}</h3>
-                        <p className="text-sm text-muted-foreground text-center">
-                          {service.description}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Services />
         <section id="portfolio" className="w-full py-12 md:py-24 lg:py-32 bg-background">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -320,6 +285,15 @@ export default function Test() {
                     className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
                   />
                 </div>
+                {email==="shaikhmubin572@gmail.com" && (
+                  <div className="text-center mt-8">
+                    <button
+                      className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                    >
+                      Add Image
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>
@@ -395,19 +369,20 @@ export default function Test() {
                   </div>
                 </div>
               </div>
-              <div className="space-y-4">
-                <form className="space-y-4">
-                  <Input placeholder="Your Name" />
-                  <Input type="email" placeholder="Your Email" />
-                  <Input placeholder="Subject" />
-                  <Textarea placeholder="Your Message" />
-                  <Button type="submit" className="w-full">Send Message</Button>
-                </form>
+              <div className="relative space-y-4">
+                <div className="relative bg-white bg-opacity-75 p-6 rounded-lg shadow-lg">
+                  <form className="space-y-4">
+                    <Input placeholder="Your Name" />
+                    <Input type="email" placeholder="Your Email" />
+                    <Input placeholder="Subject" />
+                    <Textarea placeholder="Your Message" />
+                    <Button type="submit" className="w-full">Send Message</Button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </section>
-      </main>
       <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
         <p className="text-xs text-muted-foreground">© 2024 CreativeSolutions. All rights reserved.</p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">

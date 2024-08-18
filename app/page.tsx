@@ -7,10 +7,13 @@ const Home = async() => {
 
   const clerkUser = await currentUser();
   if(!clerkUser) redirect('/sign-in');
+  const email: string = clerkUser.emailAddresses[0]?.emailAddress || '';
+
+  console.log(email);
 
   return (
     <>
-      <Test />
+      <Test email={email}/>
     </>
   );
 }
