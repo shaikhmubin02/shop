@@ -225,11 +225,14 @@ export default function Test( {email}: {email: string}) {
           >  
             <div className="container px-4 md:px-6">
               <motion.h2 
-                className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8"
+                className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-5"
                 variants={fadeInUp}
               >
                 Our Portfolio
               </motion.h2>
+              <motion.p className="mb-8 text-center text-muted-foreground md:text-xl/relaxed">
+                Showcasing a collection of our best work to inspire and demonstrate our expertise.
+              </motion.p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <div className="aspect-square relative overflow-hidden rounded-lg">
                   <Image
@@ -285,7 +288,7 @@ export default function Test( {email}: {email: string}) {
                     className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
                   />
                 </div>
-                {email==="shaikhmubin572@gmail.com" && (
+                {email === "shaikhmubin572@gmail.com" && (
                   <div className="text-center mt-8">
                     <button
                       className="px-4 py-2 bg-blue-500 text-white rounded-md"
