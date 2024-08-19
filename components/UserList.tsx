@@ -55,6 +55,7 @@ export default function UserList({ users, email }: { users: any, email: string }
             <TableHead>Name</TableHead>
             <TableHead>Email</TableHead>
             <TableHead>Joined</TableHead>
+            <TableHead>Recent SignIn</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -72,7 +73,17 @@ export default function UserList({ users, email }: { users: any, email: string }
                 weekday: 'long', 
                 month: 'short', 
                 day: 'numeric', 
-                year: 'numeric'
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+              })}</TableCell>
+              <TableCell>{new Date(user.last_sign_in_at).toLocaleDateString('en-US', {
+                weekday: 'long', 
+                month: 'short', 
+                day: 'numeric', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
               })}</TableCell>
             </TableRow>
           ))}
