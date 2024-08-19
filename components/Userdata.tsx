@@ -67,7 +67,7 @@ export default function Userdata({ users, email, usersrecent }: { users: any, em
 
   // Component for rendering user list
   const UserList = ({ users, title }: { users: any[], title: string }) => (
-    <div className="bg-card rounded-lg p-4 shadow">
+    <div className="bg-card rounded-lg p-4 shadow-md">
       <h2 className="text-xl font-semibold mb-4">{title}</h2>
       <ul className="space-y-4">
         {users.map((user) => (
@@ -111,7 +111,7 @@ export default function Userdata({ users, email, usersrecent }: { users: any, em
       };
 
     const UserLists = ({ usersrecent, title }: { usersrecent: any[], title: string }) => (
-    <div className="bg-card rounded-lg p-4 shadow">
+    <div className="bg-card rounded-lg p-4 shadow-md">
       <h2 className="text-xl font-semibold mb-4">{title}</h2>
       <ul className="space-y-4">
         {usersrecent.map((user) => (
