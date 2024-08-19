@@ -8,14 +8,36 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/use-toast"
+import { useForm, ValidationError } from '@formspree/react';
+import { useState } from 'react';
 
 export default function DigitalMarketingForm() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const [state, handleSubmit] = useForm("xanwddkb");
+  const [selectedService, setSelectedService] = useState("");
+
+  const handleServiceChange = (value: string) => {
+    setSelectedService(value);
+  };
+
+  if (state.succeeded) {
+    return <div className="relative bg-white bg-opacity-75 mt-16 mx-auto p-6 rounded-lg shadow-xl flex items-center justify-center max-w-max">
+      <p className="text-center">We&apos;ve received your information and will be in touch soon about boosting your online presence.</p>
+    </div>
+  }  
+
+  const handleSubmits = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!selectedService) {
+      toast({
+        title: "Service not selected",
+        description: "Please select a service before submitting.",
+      });
+      return;
+    }
     toast({
       title: "Online Presence Form submitted",
       description: "We've received your information and will be in touch soon about boosting your online presence.",
-    })
+    });
   }
 
   return (
@@ -29,19 +51,34 @@ export default function DigitalMarketingForm() {
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Name</Label>
-              <Input id="name" name="name" placeholder="Your name" required />
+              <Input id="name" name="Name" placeholder="Your name" required />
+              <ValidationError 
+                prefix="Name" 
+                field="name"
+                errors={state.errors}
+              />
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" name="email" placeholder="Your email" type="email" required />
+              <Input id="email" name="Email" placeholder="Your email" type="email" required />
+              <ValidationError 
+                prefix="Email" 
+                field="email"
+                errors={state.errors}
+              />
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="website">Website</Label>
-              <Input id="website" name="website" placeholder="Your website URL" />
+              <Input id="website" name="Website" placeholder="Your website URL" />
+              <ValidationError 
+                prefix="Website" 
+                field="website"
+                errors={state.errors}
+              />
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="social">Primary Social Media Platform</Label>
-              <Select name="social">
+              <Select name="Primary Social Media Platform">
                 <SelectTrigger>
                   <SelectValue placeholder="Select a platform" />
                 </SelectTrigger>
@@ -53,35 +90,50 @@ export default function DigitalMarketingForm() {
                   <SelectItem value="other">Other</SelectItem>
                 </SelectContent>
               </Select>
+              <ValidationError 
+                prefix="Social" 
+                field="social"
+                errors={state.errors}
+              />
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label>Services Interested In</Label>
-              <RadioGroup defaultValue="seo">
+              <RadioGroup id="service" name="Services Interested In" value={selectedService} onValueChange={handleServiceChange}>
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="seo" id="seo" />
+                  <RadioGroupItem value="SEO Optimization" id="seo" />
                   <Label htmlFor="seo">SEO Optimization</Label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="ppc" id="ppc" />
+                  <RadioGroupItem value="PPC Advertising" id="ppc" />
                   <Label htmlFor="ppc">PPC Advertising</Label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="social" id="social" />
+                  <RadioGroupItem value="Social Media Management" id="social" />
                   <Label htmlFor="social">Social Media Management</Label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="content" id="content" />
+                  <RadioGroupItem value="Content Marketing" id="content" />
                   <Label htmlFor="content">Content Marketing</Label>
                 </div>
               </RadioGroup>
+              <ValidationError 
+                prefix="Service" 
+                field="service"
+                errors={state.errors}
+              />
             </div>
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="goals">Marketing Goals</Label>
-              <Textarea id="goals" name="goals" placeholder="Describe your digital marketing goals" />
+              <Textarea id="goals" name="Marketing Goals" placeholder="Describe your digital marketing goals" />
+              <ValidationError 
+                prefix="goals" 
+                field="goals"
+                errors={state.errors}
+              />
             </div>
           </div>
           <CardFooter className="flex justify-between mt-4 px-0">
-            <Button type="submit">Submit</Button>
+            <Button type="submit" disabled={state.submitting || !selectedService}>Submit</Button>
           </CardFooter>
         </form>
       </CardContent>

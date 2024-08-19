@@ -17,7 +17,7 @@ const Form = () => {
     <form onSubmit={handleSubmit} className="space-y-4">
        
       <div className="grid gap-2">
-        <Input id="name" type="text" name="name" placeholder="Your Name" />
+        <Input id="name" type="text" name="Name" placeholder="Your Name" />
       </div>
       <ValidationError 
         prefix="Name" 
@@ -25,7 +25,7 @@ const Form = () => {
         errors={state.errors}
       />
       <div className="grid gap-2">
-        <Input id="email" name="email" type="email" placeholder="Your Email" />
+        <Input id="email" name="Email" type="email" placeholder="Your Email" />
       </div>
       <ValidationError 
         prefix="Email" 
@@ -33,7 +33,7 @@ const Form = () => {
         errors={state.errors}
       />
       <div className="grid gap-2">
-        <Input id="subject" type="text" name="subject" placeholder="Subject" />
+        <Input id="subject" type="text" name="Subject" placeholder="Subject" />
       </div>
       <ValidationError 
         prefix="Subject" 
@@ -41,7 +41,7 @@ const Form = () => {
         errors={state.errors}
       />
       <div className="grid gap-2">
-        <Textarea id="message" name="message" placeholder="Your Message" />
+        <Textarea id="message" name="Message" placeholder="Your Message" />
       </div>
       <ValidationError 
         prefix="Message" 
