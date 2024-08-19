@@ -16,6 +16,8 @@ import Faqs from './faqs'
 import { SignedIn, SignInButton, UserButton, SignedOut} from '@clerk/nextjs'
 import Image from "next/image";
 import Services from './Services'
+import InteractiveImages from './InteractiveImages'
+import Form from './Form'
 
 const testimonials = [
   {
@@ -227,6 +229,7 @@ export default function Test( {email}: {email: string}) {
           </div>
         </motion.section>
         <Services />
+        <InteractiveImages />
         <section id="portfolio" className="w-full py-12 md:py-24 lg:py-32 bg-background">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -384,13 +387,7 @@ export default function Test( {email}: {email: string}) {
               </div>
               <div className="relative space-y-4">
                 <div className="relative bg-white bg-opacity-75 p-6 rounded-lg shadow-xl">
-                  <form className="space-y-4">
-                    <Input placeholder="Your Name" />
-                    <Input type="email" placeholder="Your Email" />
-                    <Input placeholder="Subject" />
-                    <Textarea placeholder="Your Message" />
-                    <Button type="submit" className="w-full">Send Message</Button>
-                  </form>
+                  <Form />
                 </div>
               </div>
             </div>
