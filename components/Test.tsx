@@ -76,6 +76,12 @@ const staggerChildren = {
   animate: { transition: { staggerChildren: 0.1 } }
 }
 
+const authorizedEmails = [
+  "shaikhmubin572@gmail.com",
+  "shaikhmubin5502@gmail.com",
+  "thecreativesurat@gmail.com",
+];
+
 export default function Test( {email}: {email: string}) {
 
   const [darkMode, setDarkMode] = useState(false)
@@ -125,7 +131,7 @@ export default function Test( {email}: {email: string}) {
   
        {/* Dektop View: Navigation Links */}
        <nav className="hidden md:flex ml-auto gap-4 sm:gap-6">
-        {email === "shaikhmubin572@gmail.com" && (
+        {authorizedEmails.includes(email) && (
           <Link className="text-sm font-medium hover:underline underline-offset-4" href="/admin">
             Admin
           </Link>

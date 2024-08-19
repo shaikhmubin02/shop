@@ -7,6 +7,12 @@ import { Button } from "@/components/ui/button"
 import { MenuIcon } from "lucide-react"
 import { useUser } from '@clerk/nextjs'
 
+const authorizedEmails = [
+  "shaikhmubin572@gmail.com",
+  "shaikhmubin5502@gmail.com",
+  "thecreativesurat@gmail.com",
+];
+
 export function MobileNav() {
   const [open, setOpen] = useState(false)
   const { user } = useUser();
@@ -19,7 +25,8 @@ export function MobileNav() {
   ]);
 
   useEffect(() => {
-    if (user?.emailAddresses[0]?.emailAddress === "shaikhmubin572@gmail.com") {
+    const userEmail = user?.emailAddresses[0]?.emailAddress ?? '';
+    if (authorizedEmails.includes(userEmail)) {
       setNavItems(prevItems => [
         { href: '/', label: 'Home' },
         { href: '/admin', label: 'Admin' },

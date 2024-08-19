@@ -110,9 +110,6 @@ export default async function UsersPage() {
       last_sign_in_at: user.lastSignInAt ? new Date(user.lastSignInAt).toISOString() : undefined,
     }));
 
-    console.log(usersrecent);
-    console.log(users);
-
     allUsers = allUsers.concat(users);
     allRecentUsers = allRecentUsers.concat(usersrecent);
 

@@ -1,8 +1,9 @@
+import DigitalMarketingPage from '@/components/DigitalMarketingPage'
 import React from 'react'
 
 const DigitalMarketing = () => {
   return (
-    <div>DigitalMarketing</div>
+    <DigitalMarketingPage />
   )
 }
 

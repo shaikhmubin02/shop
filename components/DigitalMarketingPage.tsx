@@ -3,9 +3,8 @@
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { PrinterIcon, FileTextIcon, ImageIcon, BookOpenIcon, PackageIcon, TagIcon } from "lucide-react"
+import { GlobeIcon, SearchIcon, BarChartIcon, UsersIcon, MailIcon, CameraIcon } from "lucide-react"
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -23,15 +22,15 @@ const fadeInUp = {
 }
 
 const services = [
-  { icon: FileTextIcon, title: "Business Stationery", description: "High-quality business cards, letterheads, and envelopes that make a lasting impression." },
-  { icon: ImageIcon, title: "Large Format Printing", description: "Eye-catching posters, banners, and signage for maximum visual impact." },
-  { icon: BookOpenIcon, title: "Brochures & Catalogs", description: "Professionally printed brochures and catalogs that showcase your products and services." },
-  { icon: PrinterIcon, title: "Custom Print Solutions", description: "Tailored printing solutions for unique projects and special requirements." },
-  { icon: PackageIcon, title: "Packaging Printing", description: "Custom packaging solutions that protect your products and enhance your brand." },
-  { icon: TagIcon, title: "Labels & Stickers", description: "High-quality labels and stickers for product packaging or promotional use." }
+  { icon: SearchIcon, title: "Search Engine Optimization (SEO)", description: "Improve your website's visibility in search engine results and drive organic traffic." },
+  { icon: UsersIcon, title: "Social Media Marketing", description: "Engage your audience and build brand awareness through strategic social media campaigns." },
+  { icon: GlobeIcon, title: "Content Marketing", description: "Create and distribute valuable, relevant content to attract and retain a clearly defined audience." },
+  { icon: BarChartIcon, title: "Analytics & Reporting", description: "Track and analyze your digital marketing performance to continually improve results." },
+  { icon: MailIcon, title: "Email Marketing", description: "Design and execute effective email campaigns to nurture leads and retain customers." },
+  { icon: CameraIcon, title: "Video Marketing", description: "Produce and distribute engaging video content to boost brand awareness and conversions." }
 ]
 
-export default function PrintingPage() {
+export default function DigitalMarketingPage() {
   return (
     <motion.div 
       className="container mx-auto px-4 py-12"
@@ -40,21 +39,21 @@ export default function PrintingPage() {
       animate="animate"
       exit="exit"
     >
+      <Link href="/" prefetch={false}>
+        <ChevronLeftIcon className="w-4 h-4 mr-1" />
+      </Link>
       <motion.h1 
         className="text-4xl font-bold mb-8"
         variants={fadeInUp}
-      > 
-        <Link href="/" prefetch={false}>
-          <ChevronLeftIcon className="w-4 h-4 mr-1" />
-        </Link>
-        Printing Services
+      >
+        Digital Marketing Services
       </motion.h1>
       <motion.p 
         className="text-xl mb-8 text-muted-foreground"
         variants={fadeInUp}
       >
-        Our state-of-the-art printing services ensure your designs are reproduced with precision and quality.
-        From business cards to large format prints, we&apos;ve got all your printing needs covered.
+        Our digital marketing services help you reach and engage your target audience online.
+        We develop strategies that increase your visibility, drive traffic, and convert leads into customers.
       </motion.p>
       <motion.div 
         className="grid md:grid-cols-2 gap-6 mb-12"
@@ -64,12 +63,11 @@ export default function PrintingPage() {
       >
         {services.map((service, index) => (
           <motion.div
-            key={service.href}
+            key={service.title}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-          <motion.div key={service.title} variants={fadeInUp}>
             <Card className="cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
               <CardHeader>
                 <CardTitle className="flex items-center">
@@ -81,14 +79,13 @@ export default function PrintingPage() {
               </CardContent>
             </Card>
           </motion.div>
-          </motion.div>
         ))}
       </motion.div>
       <motion.div 
         className="text-center"
         variants={fadeInUp}
       >
-        <h2 className="text-2xl font-bold mb-4">Our Printing Process</h2>
+        <h2 className="text-2xl font-bold mb-4">Our Digital Marketing Approach</h2>
         <motion.ol 
           className="list-decimal list-inside text-left max-w-2xl mx-auto mb-8"
           variants={staggerContainer}
@@ -96,12 +93,12 @@ export default function PrintingPage() {
           animate="animate"
         >
           {[
-            "File preparation and prepress",
-            "Color management and proofing",
-            "Material selection",
-            "Printing using advanced technologies",
-            "Finishing and binding (if applicable)",
-            "Quality control and packaging"
+            "Audience and competitor analysis",
+            "Strategy development",
+            "Content creation and optimization",
+            "Campaign execution",
+            "Performance monitoring and optimization",
+            "Reporting and strategy refinement"
           ].map((step, index) => (
             <motion.li 
               key={index} 
@@ -117,8 +114,8 @@ export default function PrintingPage() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.8 }}
         >
-        <Link href="/services/printing/form" prefetch={false}>
-        <Button size="lg">Get a Printing Quote</Button>
+        <Link href="/services/digital-marketing/form" prefetch={false}>
+          <Button size="lg">Boost Your Online Presence</Button>
         </Link>
         </motion.div>
       </motion.div>

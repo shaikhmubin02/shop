@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { PenToolIcon, LayersIcon, EyeIcon, PaletteIcon, ImageIcon, TypeIcon } from "lucide-react"
+import { BriefcaseIcon, PenToolIcon, MessageCircleIcon, TargetIcon, UsersIcon, TrendingUpIcon } from "lucide-react"
 import Link from 'next/link'
 
 const pageVariants = {
@@ -21,16 +21,7 @@ const fadeInUp = {
   animate: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 }
 
-const services = [
-  { icon: PenToolIcon, title: "Custom Illustrations", description: "Unique, hand-crafted illustrations tailored to your brand and message." },
-  { icon: LayersIcon, title: "Print & Digital Design", description: "Cohesive designs that work seamlessly across both print and digital mediums." },
-  { icon: EyeIcon, title: "User Interface Design", description: "Intuitive and visually appealing interfaces for websites and applications." },
-  { icon: PaletteIcon, title: "Brand Identity Design", description: "Comprehensive visual identity systems that define and distinguish your brand." },
-  { icon: ImageIcon, title: "Infographic Design", description: "Visually engaging infographics that simplify complex information." },
-  { icon: TypeIcon, title: "Typography", description: "Custom typefaces and lettering to enhance your brand's visual language." }
-]
-
-export default function GraphicDesignPage() {
+export default function BrandingPage() {
   return (
     <motion.div 
       className="container mx-auto px-4 py-12"
@@ -39,21 +30,21 @@ export default function GraphicDesignPage() {
       animate="animate"
       exit="exit"
     >
+      <Link href="/" prefetch={false}>
+        <ChevronLeftIcon className="w-4 h-4 mr-1" />
+      </Link>
       <motion.h1 
         className="text-4xl font-bold mb-8"
         variants={fadeInUp}
       >
-        <Link href="/" prefetch={false}>
-          <ChevronLeftIcon className="w-4 h-4 mr-1" />
-        </Link>
-        Graphic Design Services
+        Branding Services
       </motion.h1>
       <motion.p 
         className="text-xl mb-8 text-muted-foreground"
         variants={fadeInUp}
       >
-        Our graphic design services bring your ideas to life with stunning visuals that capture your brand&apos;s essence.
-        From logos to marketing materials, we create designs that leave a lasting impression.
+        Our branding services help you create a strong, cohesive identity that resonates with your audience.
+        We develop comprehensive brand strategies that set you apart in the market.
       </motion.p>
       <motion.div 
         className="grid md:grid-cols-2 gap-6 mb-12"
@@ -61,14 +52,20 @@ export default function GraphicDesignPage() {
         initial="initial"
         animate="animate"
       >
-        {services.map((service, index) => (
+        {[
+          { icon: BriefcaseIcon, title: "Brand Strategy", description: "Develop a clear brand positioning and strategy that aligns with your business goals." },
+          { icon: PenToolIcon, title: "Visual Identity", description: "Create a distinctive visual language including logos, color palettes, and typography." },
+          { icon: MessageCircleIcon, title: "Brand Voice", description: "Craft a unique tone of voice that communicates your brand's personality consistently." },
+          { icon: TargetIcon, title: "Brand Guidelines", description: "Develop comprehensive guidelines to ensure consistent brand application across all touchpoints." },
+          { icon: UsersIcon, title: "Brand Experience", description: "Design cohesive brand experiences across all customer touchpoints." },
+          { icon: TrendingUpIcon, title: "Brand Evolution", description: "Guide your brand's growth and adaptation to changing market conditions." }
+        ].map((service, index) => (
           <motion.div
-            key={service.href}
+            key={service.title}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-          <motion.div key={service.title} variants={fadeInUp}>
             <Card className="cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
               <CardHeader>
                 <CardTitle className="flex items-center">
@@ -80,44 +77,33 @@ export default function GraphicDesignPage() {
               </CardContent>
             </Card>
           </motion.div>
-          </motion.div>
         ))}
       </motion.div>
       <motion.div 
         className="text-center"
         variants={fadeInUp}
       >
-        <h2 className="text-2xl font-bold mb-4">Our Design Process</h2>
+        <h2 className="text-2xl font-bold mb-4">Our Branding Process</h2>
         <motion.ol 
           className="list-decimal list-inside text-left max-w-2xl mx-auto mb-8"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
         >
-          {[
-            "Consultation and brief development",
-            "Research and concept creation",
-            "Initial design presentations",
-            "Revisions and refinement",
-            "Final approval and delivery",
-            "Post-project support and guidance"
-          ].map((step, index) => (
-            <motion.li 
-              key={index} 
-              className="mb-2"
-              variants={fadeInUp}
-            >
-              {step}
-            </motion.li>
-          ))}
+          <li className="mb-2">Discovery and research</li>
+          <li className="mb-2">Brand strategy development</li>
+          <li className="mb-2">Visual identity creation</li>
+          <li className="mb-2">Brand voice and messaging</li>
+          <li className="mb-2">Brand guidelines and assets</li>
+          <li>Implementation and brand management</li>
         </motion.ol>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.8 }}
-        > 
-        <Link href="/services/graphic-design/form" prefetch={false}>
-          <Button size="lg">Request a Design Consultation</Button>
+        >
+        <Link href="/services/branding/form" prefetch={false}>
+          <Button size="lg">Start Your Branding Journey</Button>
         </Link>
         </motion.div>
       </motion.div>
