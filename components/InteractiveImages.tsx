@@ -39,7 +39,7 @@ export default function Component() {
         aria-pressed={poppedImage === 'pink'}
       >
         <Image
-          src="/bg3.avif"
+          src="/gd3.avif"
           alt="Pink t-shirt with cheese design"
           width={320}
           height={256}
