@@ -18,6 +18,7 @@ import Image from "next/image";
 import Services from './Services'
 import InteractiveImages from './InteractiveImages'
 import Form from './Form'
+import Board from './Board'
 
 const testimonials = [
   {
@@ -229,7 +230,7 @@ export default function Test( {email}: {email: string}) {
           </div>
         </motion.section>
         <Services />
-        <InteractiveImages />
+        <Board />
         <section id="portfolio" className="w-full py-12 md:py-24 lg:py-32 bg-background">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
