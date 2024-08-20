@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, Suspense, useCallback } from 'react
 
 const Spline = React.lazy(() => import('@splinetool/react-spline/next'));
 
-export default function Home() {
+export default function Splines() {
   const [isVisible, setIsVisible] = useState(false);
   const splineRef = useRef(null);
 
