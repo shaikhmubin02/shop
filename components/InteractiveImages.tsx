@@ -39,7 +39,7 @@ export default function Component() {
         aria-pressed={poppedImage === 'pink'}
       >
         <Image
-          src="/placeholder.svg?height=256&width=320"
+          src="/bg3.avif"
           alt="Pink t-shirt with cheese design"
           width={320}
           height={256}
