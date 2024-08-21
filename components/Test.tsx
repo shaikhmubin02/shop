@@ -19,6 +19,8 @@ import Services from './Services'
 import InteractiveImages from './InteractiveImages'
 import Form from './Form'
 import Board from './Board'
+import Pricing from './Pricing'
+import ImgGallery from './ImgGallery'
 
 const testimonials = [
   {
@@ -231,6 +233,7 @@ export default function Test( {email}: {email: string}) {
         </motion.section>
         <Services />
         <Board />
+        <ImgGallery />
         <section id="portfolio" className="w-full py-12 md:py-24 lg:py-32 bg-background">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -315,38 +318,8 @@ export default function Test( {email}: {email: string}) {
             </div>
           </motion.div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">What Our Clients Say</h2>
-            <p className="text-xl text-muted-foreground tracking-tighter font-bold sm:text-4xl md:text-xl text-center mb-4">Hear from our satisfied customers about their experience working with us.</p>
-            <TestimonialSlider testimonials={testimonials} />
-          </div>
-        </section>
-        <section id="pricing" className="w-full py-12 md:py-24 lg:py-32 bg-background">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">Pricing Plans</h2>
-            <div className="grid gap-6 lg:grid-cols-3">
-              {['Basic', 'Pro', 'Enterprise'].map((plan) => (
-                <Card key={plan}>
-                  <CardContent className="p-6">
-                    <h3 className="text-2xl font-bold mb-2">{plan}</h3>
-                    <p className="text-4xl font-bold mb-4">
-                      ${plan === 'Basic' ? '99' : plan === 'Pro' ? '199' : '299'}
-                      <span className="text-sm font-normal text-muted-foreground">/month</span>
-                    </p>
-                    <ul className="mb-4 space-y-2">
-                      <li>Feature 1</li>
-                      <li>Feature 2</li>
-                      <li>Feature 3</li>
-                      {plan !== 'Basic' && <li>Feature 4</li>}
-                      {plan === 'Enterprise' && <li>Feature 5</li>}
-                    </ul>
-                    <Button className="w-full">Choose Plan</Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
+        <section id='pricing'>
+         <Pricing />
         </section>
         <section
           id="faq"
