@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/magicui/marquee";
+import Image from 'next/image';
 
 const reviews = [
   {
@@ -52,7 +53,13 @@ const ReviewCard = ({
         "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
       )}
     >
-      <img className="h-full w-full object-cover rounded-lg" alt="" src={img} />
+      <Image 
+        className="h-full w-full object-cover rounded-lg" 
+        alt="" 
+        src={img} 
+        width={224} 
+        height={240}
+      />
     </figure>
   );
 };
@@ -61,13 +68,13 @@ export function DemoVertical() {
   return (
     <div className="relative flex h-[600px] w-full flex-row items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
       <Marquee pauseOnHover vertical className="[--duration:30s]">
-        {firstRow.map((review) => (
-          <ReviewCard {...review} />
+        {firstRow.map((review, index) => (
+          <ReviewCard key={`first-${index}`} {...review} />
         ))}
       </Marquee>
       <Marquee reverse pauseOnHover vertical className="[--duration:30s]">
-        {secondRow.map((review) => (
-          <ReviewCard {...review} />
+        {secondRow.map((review, index) => (
+          <ReviewCard key={`second-${index}`} {...review} />
         ))}
       </Marquee>
       <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-background"></div>

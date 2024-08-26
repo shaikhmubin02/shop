@@ -330,7 +330,7 @@ export default function Test( {email}: {email: string}) {
 
       <Modal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} title="Terms of Service">
         <h2>1. Acceptance of Terms</h2>
-        <p>By accessing and using CreativeSolutions' services, you agree to be bound by these Terms of Service.</p>
+        <p>By accessing and using CreativeSolutions&apos; services, you agree to be bound by these Terms of Service.</p>
 
         <h2>2. Description of Service</h2>
         <p>CreativeSolutions provides graphic design, printing, branding, and digital marketing services.</p>
