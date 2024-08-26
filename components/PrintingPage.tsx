@@ -31,95 +31,117 @@ const services = [
   { icon: TagIcon, title: "Labels & Stickers", description: "High-quality labels and stickers for product packaging or promotional use." }
 ]
 
+const backgroundVariants = {
+  animate: {
+    backgroundPosition: ['0% 0%', '100% 100%'],
+    transition: {
+      duration: 15,
+      ease: "linear",
+      repeat: Infinity,
+      repeatType: "reverse"
+    }
+  }
+}
+
 export default function PrintingPage() {
   return (
     <motion.div 
-      className="container mx-auto px-4 py-12"
-      variants={pageVariants}
-      initial="initial"
+      className="relative min-h-screen overflow-hidden"
+      variants={backgroundVariants}
       animate="animate"
-      exit="exit"
+      style={{
+        background: 'linear-gradient(45deg, #f3f4f6, #e5e7eb, #d1d5db, #a7f3d0, #6ee7b7)',
+        backgroundSize: '400% 400%'
+      }}
     >
-      <motion.h1 
-        className="text-4xl font-bold mb-8"
-        variants={fadeInUp}
-      > 
-        <Link href="/" prefetch={false}>
-          <ChevronLeftIcon className="w-4 h-4 mr-1" />
-        </Link>
-        Printing Services
-      </motion.h1>
-      <motion.p 
-        className="text-xl mb-8 text-muted-foreground"
-        variants={fadeInUp}
-      >
-        Our state-of-the-art printing services ensure your designs are reproduced with precision and quality.
-        From business cards to large format prints, we&apos;ve got all your printing needs covered.
-      </motion.p>
       <motion.div 
-        className="grid md:grid-cols-2 gap-6 mb-12"
-        variants={staggerContainer}
+        className="container mx-auto px-4 py-12 relative z-10"
+        variants={pageVariants}
         initial="initial"
         animate="animate"
+        exit="exit"
       >
-        {services.map((service, index) => (
-          <motion.div
-            key={service.href}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-          <motion.div key={service.title} variants={fadeInUp}>
-            <Card className="cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <service.icon className="mr-2 h-6 w-6" /> {service.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                {service.description}
-              </CardContent>
-            </Card>
-          </motion.div>
-          </motion.div>
-        ))}
-      </motion.div>
-      <motion.div 
-        className="text-center"
-        variants={fadeInUp}
-      >
-        <h2 className="text-2xl font-bold mb-4">Our Printing Process</h2>
-        <motion.ol 
-          className="list-decimal list-inside text-left max-w-2xl mx-auto mb-8"
+        <motion.h1 
+          className="text-4xl font-bold mb-8 dark:text-black"
+          variants={fadeInUp}
+        > 
+          <Link href="/" prefetch={false}>
+            <ChevronLeftIcon className="w-4 h-4 mr-1 dark:text-black" />
+          </Link>
+          Printing Services
+        </motion.h1>
+        <motion.p 
+          className="text-xl mb-8 text-muted-foreground"
+          variants={fadeInUp}
+        >
+          Our state-of-the-art printing services ensure your designs are reproduced with precision and quality.
+          From business cards to large format prints, we&apos;ve got all your printing needs covered.
+        </motion.p>
+        <motion.div 
+          className="grid md:grid-cols-2 gap-6 mb-12"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
         >
-          {[
-            "File preparation and prepress",
-            "Color management and proofing",
-            "Material selection",
-            "Printing using advanced technologies",
-            "Finishing and binding (if applicable)",
-            "Quality control and packaging"
-          ].map((step, index) => (
-            <motion.li 
-              key={index} 
-              className="mb-2"
-              variants={fadeInUp}
+          {services.map((service, index) => (
+            <motion.div
+              key={service.href}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              {step}
-            </motion.li>
+            <motion.div key={service.title} variants={fadeInUp}>
+              <Card className="cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <service.icon className="mr-2 h-6 w-6" /> {service.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {service.description}
+                </CardContent>
+              </Card>
+            </motion.div>
+            </motion.div>
           ))}
-        </motion.ol>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
+        </motion.div>
+        <motion.div 
+          className="text-center"
+          variants={fadeInUp}
         >
-        <Link href="/services/printing/form" prefetch={false}>
-        <Button size="lg">Get a Printing Quote</Button>
-        </Link>
+          <h2 className="text-2xl font-bold mb-4 dark:text-black">Our Printing Process</h2>
+          <motion.ol 
+            className="list-decimal list-inside text-left max-w-2xl mx-auto mb-8 dark:text-black"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            {[
+              "File preparation and prepress",
+              "Color management and proofing",
+              "Material selection",
+              "Printing using advanced technologies",
+              "Finishing and binding (if applicable)",
+              "Quality control and packaging"
+            ].map((step, index) => (
+              <motion.li 
+                key={index} 
+                className="mb-2"
+                variants={fadeInUp}
+              >
+                {step}
+              </motion.li>
+            ))}
+          </motion.ol>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+          >
+          <Link href="/services/printing/form" prefetch={false}>
+          <Button size="lg">Get a Printing Quote</Button>
+          </Link>
+          </motion.div>
         </motion.div>
       </motion.div>
     </motion.div>

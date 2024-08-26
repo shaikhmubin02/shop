@@ -1,4 +1,6 @@
 import { Star } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const services = [
   {
@@ -40,6 +42,19 @@ const services = [
 ];
 
 export default function ImgGallery() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const starVariants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="overflow-x-auto pb-4 mb-4 scrollbar-hide">
@@ -66,16 +81,39 @@ export default function ImgGallery() {
         </div>
       </div>
 
-      <div className="mt-12 text-center">
+      <motion.div 
+        ref={ref}
+        className="mt-12 text-center"
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         <div className="flex justify-center mb-4">
           {[...Array(5)].map((_, i) => (
-            <Star key={i} className="w-6 h-6 text-yellow-400 fill-current" />
+            <motion.div
+              key={i}
+              variants={starVariants}
+              transition={{ 
+                delay: i * 0.2, 
+                duration: 0.8, 
+                ease: "easeOut" 
+              }}
+            >
+              <Star className="w-6 h-6 text-yellow-400 fill-current" />
+            </motion.div>
           ))}
         </div>
-        <p className="text-gray-600">
-          Check out our customer reviews (4.97 / 5 average from 41329 ratings)
-        </p>
-      </div>
+        <motion.p 
+          className="text-gray-600"
+          variants={textVariants}
+          transition={{ 
+            delay: 1.2, 
+            duration: 1, 
+            ease: "easeOut" 
+          }}
+        >
+          Check out our customer reviews (4.97 / 5 average from 300+ customer ratings)
+        </motion.p>
+      </motion.div>
 
       {/* Tailwind CSS custom class for hiding the scrollbar */}
       <style jsx>{`

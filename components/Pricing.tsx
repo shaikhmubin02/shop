@@ -24,7 +24,7 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-black p-4">
       <h2 className="text-4xl font-bold text-center mb-8">Choose Your Plan</h2>
       <div className="flex flex-wrap justify-center gap-8">
         {plans.map((plan, index) => (

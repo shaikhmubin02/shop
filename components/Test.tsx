@@ -2,64 +2,28 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { PenToolIcon, PrinterIcon, BriefcaseIcon, GlobeIcon, PhoneIcon, MailIcon, MapPinIcon, MoonIcon, SunIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
+import { PenToolIcon, PrinterIcon, BriefcaseIcon, GlobeIcon, PhoneIcon, MailIcon, MapPinIcon, MoonIcon, SunIcon, ChevronLeftIcon, ChevronRightIcon, Loader2 } from "lucide-react"
 import { motion } from 'framer-motion'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Link from 'next/link'
 import { MobileNav } from './MobileNav'
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
-import TestimonialSlider from "@/components/testimonials-slider";
 import Faqs from './faqs'
 import { SignedIn, SignInButton, UserButton, SignedOut} from '@clerk/nextjs'
 import Image from "next/image";
 import Services from './Services'
-import InteractiveImages from './InteractiveImages'
 import Form from './Form'
 import Board from './Board'
 import Pricing from './Pricing'
 import ImgGallery from './ImgGallery'
-
-const testimonials = [
-  {
-    quote:"CreativeSolutions transformed our brand identity. Highly recommended!",
-    name: "Rose Roberson",
-    role: "Tech Co",
-    imgSrc: "https://i.pravatar.cc/120?img=1",
-  },
-  {
-    quote:"Their digital marketing strategies doubled our online sales.",
-    name: "Chace Rodgers",
-    role: "Fashion Inc",
-    imgSrc: "https://i.pravatar.cc/120?img=10",
-  },
-  {
-    quote:"The print materials they designed for us are simply stunning.",
-    name: "Cornelius Sheppard",
-    role: "Local Cafe",
-    imgSrc: "https://i.pravatar.cc/120?img=9",
-  },
-  {
-    quote:"CreativeSolutions transformed our brand identity. Highly recommended!",
-    name: "Rose Roberson",
-    role: "Tech Co",
-    imgSrc: "https://i.pravatar.cc/120?img=1",
-  },
-  {
-    quote:"Their digital marketing strategies doubled our online sales.",
-    name: "Chace Rodgers",
-    role: "Fashion Inc",
-    imgSrc: "https://i.pravatar.cc/120?img=10",
-  },
-  {
-    quote:"The print materials they designed for us are simply stunning.",
-    name: "Cornelius Sheppard",
-    role: "Local Cafe",
-    imgSrc: "https://i.pravatar.cc/120?img=9",
-  },
-];
+import { BackgroundBeamsWithCollisionDemo } from './BackgroundBeamsWithCollision'
+import { Portfolio } from './Portfolio'
+import { cn } from "@/lib/utils";
+import GridPattern from "@/components/magicui/grid-pattern";
+import { useTheme } from "next-themes";
+import TestimonialSlider from './testimonials-slider'
+import Modal from './Modal'
+import { testimonials } from '@/data/testimonials'
+import { Magiclogo } from './Magiclogo'
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -89,9 +53,28 @@ const authorizedEmails = [
 
 export default function Test( {email}: {email: string}) {
 
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+
   const [darkMode, setDarkMode] = useState(false)
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { theme } = useTheme();
+  const [loading, setLoading] = useState({
+    services: true,
+    portfolio: true,
+    testimonials: true,
+    adminLink: true,
+  });
+
+  useEffect(() => {
+    // Simulate loading times
+    setTimeout(() => setLoading(prev => ({ ...prev, services: false })), 1000);
+    setTimeout(() => setLoading(prev => ({ ...prev, portfolio: false })), 1500);
+    setTimeout(() => setLoading(prev => ({ ...prev, testimonials: false })), 2000);
+    // Simulate admin link authorization check
+    setTimeout(() => setLoading(prev => ({ ...prev, adminLink: false })), 800);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -119,12 +102,9 @@ export default function Test( {email}: {email: string}) {
       </SignedIn>
       </div>
         <Link className="flex items-center justify-center ml-auto md:ml-0 md:mr-auto" href="#">
-          <Image src='/logo.png' alt='logo' width={20} height={20}/>
-          <span className="ml-2 font-bold text-lg">Creative</span>
-          <span className="text-lg">Solutions</span>
-          {/* <span className="mt-1 font-normal text-sm leading-tight italic">Solutions</span> */}
+          <Magiclogo />
         </Link>
-  
+        
         {/* Mobile View: Dark Mode Icon and MobileNav */}
         <div className="flex items-center md:hidden ml-auto">
           <Button variant="ghost" size="icon" onClick={toggleDarkMode}>
@@ -136,7 +116,12 @@ export default function Test( {email}: {email: string}) {
   
        {/* Dektop View: Navigation Links */}
        <nav className="hidden md:flex ml-auto gap-4 sm:gap-6">
-        {authorizedEmails.includes(email) && (
+        {loading.adminLink ? (
+          <div className="flex items-center">
+            <Loader2 className="h-4 w-4 animate-spin mr-2" />
+            <span className="text-sm font-medium">Checking access...</span>
+          </div>
+        ) : authorizedEmails.includes(email) && (
           <Link className="text-sm font-medium hover:underline underline-offset-4" href="/admin">
             Admin
           </Link>
@@ -193,45 +178,14 @@ export default function Test( {email}: {email: string}) {
         </div>
         </div>
       </header>
-      <motion.section 
-          className="relative w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-background"
-          variants={staggerChildren}
-          initial="initial"
-          animate="animate"
-        >
-          <video 
-            className="absolute inset-0 w-full h-full object-cover z-0 border-none"
-            src="/videos/herovideo.mp4" 
-            autoPlay
-            muted 
-            loop 
-          />
-          <div className="relative z-10">
-            <div className="container px-4 md:px-6">
-              <div className="flex flex-col items-center space-y-4 text-center">
-                <motion.div className="space-y-2" variants={fadeInUp}>
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                    <span className="text-black">Welcome to </span>
-                    <span className="text-black">Creative</span>
-                    <span className="text-black">Solutions</span> 
-                  </h1>
-                  <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl text-black">
-                    Your one-stop shop for graphic design, printing, branding, and digital marketing solutions.
-                  </p>
-                </motion.div>
-                <motion.div className="space-x-4" variants={fadeInUp}>
-                  <Button asChild>
-                    <Link href="#services">Get Started</Link>
-                  </Button>
-                  <Button variant="outline" asChild>
-                    <Link href="#about">Learn More</Link>
-                  </Button>
-                </motion.div>
-              </div>
-            </div>
+        <BackgroundBeamsWithCollisionDemo />
+        {loading.services ? (
+          <div className="flex justify-center items-center h-64">
+            <Loader2 className="h-8 w-8 animate-spin" />
           </div>
-        </motion.section>
-        <Services />
+        ) : (
+          <Services />
+        )}
         <Board />
         <ImgGallery />
         <section id="portfolio" className="w-full py-12 md:py-24 lg:py-32 bg-background">
@@ -250,71 +204,22 @@ export default function Test( {email}: {email: string}) {
               <motion.p className="mb-8 text-center text-muted-foreground md:text-xl/relaxed">
                 Showcasing a collection of our best work to inspire and demonstrate our expertise.
               </motion.p>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                <div className="aspect-square relative overflow-hidden rounded-lg">
-                  <Image
-                    src={`/gd1.avif`}
-                    width={300}
-                    height={300}
-                    alt="gd1"
-                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                  />
+              {loading.portfolio ? (
+                <div className="flex justify-center items-center h-64">
+                  <Loader2 className="h-8 w-8 animate-spin" />
                 </div>
-                <div className="aspect-square relative overflow-hidden rounded-lg">
-                  <Image
-                    src={`/gd2.avif`}
-                    width={300}
-                    height={300}
-                    alt="gd2"
-                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                  />
+              ) : (
+                <Portfolio />
+              )}
+              {email === "shaikhmubin572@gmail.com" && (
+                <div className="text-center mt-8">
+                  <button
+                    className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                  >
+                    Add Image
+                  </button>
                 </div>
-                <div className="aspect-square relative overflow-hidden rounded-lg">
-                  <Image
-                    src={`/gd3.avif`}
-                    width={300}
-                    height={300}
-                    alt="gd3"
-                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                  />
-                </div>
-                <div className="aspect-square relative overflow-hidden rounded-lg">
-                  <Image
-                    src={`/gd4.avif`}
-                    width={300}
-                    height={300}
-                    alt="gd4"
-                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                  />
-                </div>
-                <div className="aspect-square relative overflow-hidden rounded-lg">
-                  <Image
-                    src={`/gd5.avif`}
-                    width={300}
-                    height={300}
-                    alt="gd5"
-                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                  />
-                </div>
-                <div className="aspect-square relative overflow-hidden rounded-lg">
-                  <Image
-                    src={`/gd6.avif`}
-                    width={300}
-                    height={300}
-                    alt="gd6"
-                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                  />
-                </div>
-                {email === "shaikhmubin572@gmail.com" && (
-                  <div className="text-center mt-8">
-                    <button
-                      className="px-4 py-2 bg-blue-500 text-white rounded-md"
-                    >
-                      Add Image
-                    </button>
-                  </div>
-                )}
-              </div>
+              )}
             </div>
           </motion.div>
         </section>
@@ -330,17 +235,53 @@ export default function Test( {email}: {email: string}) {
             <Faqs />
           </div>
         </section>
-        <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-background">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
           <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">What Our Clients Say</h2>
+            <p className="text-xl text-muted-foreground tracking-tighter font-bold sm:text-4xl md:text-xl text-center mb-4">Hear from our satisfied customers about their experience working with us.</p>
+            {loading.testimonials ? (
+              <div className="flex justify-center items-center h-64">
+                <Loader2 className="h-8 w-8 animate-spin" />
+              </div>
+            ) : (
+              <TestimonialSlider testimonials={testimonials} />
+            )}
+          </div>
+        </section>
+        <section id="contact" className="w-full py-12 md:py-24 lg:py-32 relative overflow-hidden bg-background">
+          <GridPattern
+            width={40}
+            height={40}
+            x={-1}
+            y={-1}
+            className={`absolute inset-0 h-full w-full ${
+              theme === 'dark' 
+                ? 'fill-white/[0.03] stroke-white/[0.2]' 
+                : 'fill-black/[0.2] stroke-black/[0.2]'
+            }`}
+            squares={[
+              [0, 2],
+              [2, 4],
+              [2, 1],
+              [4, 3],
+              [6, 1],
+              [8, 3],
+              [8, 6],
+              [6, 8],
+              [3, 7],
+              [1, 8],
+            ]}
+          />
+          <div className="container px-4 md:px-6 relative z-10">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-16">Contact Us</h2>
             <div className="grid gap-10 lg:grid-cols-2">
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold">Get in Touch</h3>
                 <div>
-                  <p className="text-muted-foreground">
+                  <p className="text-black">
                     Have a project in mind?
                   </p>
-                  <p className="text-muted-foreground">
+                  <p className="text-blac">
                     Fill out the form, and we&apos;ll get back to you as soon as possible.
                   </p>
                 </div>
@@ -360,24 +301,92 @@ export default function Test( {email}: {email: string}) {
                 </div>
               </div>
               <div className="relative space-y-4">
-                <div className="relative bg-white bg-opacity-75 p-6 rounded-lg shadow-xl">
+                <div className={`relative p-6 rounded-lg shadow-xl ${
+                  theme === 'dark' 
+                    ? 'bg-white/10 backdrop-blur-sm' 
+                    : 'bg-black/10 backdrop-blur-sm'
+                }`}>
                   <Form />
                 </div>
               </div>
             </div>
           </div>
         </section>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-muted-foreground">© 2024 CreativeSolutions. All rights reserved.</p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Terms of Service
-          </Link>
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Privacy
-          </Link>
-        </nav>
+      <footer className="w-full py-6 bg-background border-t">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col gap-2 sm:flex-row items-center">
+            <p className="text-xs text-muted-foreground">© 2024 CreativeSolutions. All rights reserved.</p>
+            <nav className="sm:ml-auto flex gap-4 sm:gap-6">
+              <button onClick={() => setIsTermsOpen(true)} className="text-xs hover:underline underline-offset-4">
+                Terms of Service
+              </button>
+              <button onClick={() => setIsPrivacyOpen(true)} className="text-xs hover:underline underline-offset-4">
+                Privacy Policy
+              </button>
+            </nav>
+          </div>
+        </div>
       </footer>
+
+      <Modal isOpen={isTermsOpen} onClose={() => setIsTermsOpen(false)} title="Terms of Service">
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing and using CreativeSolutions' services, you agree to be bound by these Terms of Service.</p>
+
+        <h2>2. Description of Service</h2>
+        <p>CreativeSolutions provides graphic design, printing, branding, and digital marketing services.</p>
+
+        <h2>3. User Responsibilities</h2>
+        <p>Users are responsible for providing accurate information and maintaining the confidentiality of their account. You agree not to use our services for any unlawful purposes or in any way that could damage, disable, overburden, or impair our servers or networks.</p>
+
+        <h2>4. Intellectual Property</h2>
+        <p>All content and designs created by CreativeSolutions remain the property of CreativeSolutions until full payment is received. Upon full payment, the agreed-upon rights will be transferred to the client as specified in the project contract.</p>
+
+        <h2>5. Limitation of Liability</h2>
+        <p>CreativeSolutions is not liable for any indirect, incidental, or consequential damages arising from the use of our services. Our total liability for any claim arising from our services shall not exceed the total amount paid by you for the specific service giving rise to such claim.</p>
+
+        <h2>6. Modifications to Terms</h2>
+        <p>We reserve the right to modify these terms at any time. Continued use of our services constitutes acceptance of the modified terms. We will make reasonable efforts to notify users of significant changes.</p>
+
+        <h2>7. Termination of Services</h2>
+        <p>We reserve the right to terminate or suspend your access to our services at our sole discretion, without notice, for conduct that we believe violates these Terms of Service or is harmful to other users, us, or third parties, or for any other reason.</p>
+
+        <h2>8. Governing Law</h2>
+        <p>These terms are governed by the laws of India. Any disputes arising from these terms or our services shall be subject to the exclusive jurisdiction of the courts in Surat, Gujarat.</p>
+
+        <h2>9. Contact Information</h2>
+        <p>If you have any questions about these Terms of Service, please contact us at thecreativesurat@gmail.com.</p>
+      </Modal>
+      <Modal isOpen={isPrivacyOpen} onClose={() => setIsPrivacyOpen(false)} title="Privacy Policy">
+        <h2>1. Information Collection</h2>
+        <p>We collect personal information that you provide to us, such as your name, email address, and phone number when you use our services. We may also collect information about your use of our services and website.</p>
+
+        <h2>2. Use of Information</h2>
+        <p>We use the collected information to provide and improve our services, communicate with you, and send you marketing materials (if you opt-in). We may also use your information for internal purposes such as auditing, data analysis, and research.</p>
+
+        <h2>3. Data Protection</h2>
+        <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized or unlawful processing, accidental loss, destruction, or damage. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+
+        <h2>4. Third-Party Disclosure</h2>
+        <p>We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties unless we provide users with advance notice. This does not include trusted third parties who assist us in operating our website, conducting our business, or servicing you, as long as those parties agree to keep this information confidential.</p>
+
+        <h2>5. Cookies</h2>
+        <p>We use cookies to enhance your experience on our website. You can choose to have your computer warn you each time a cookie is being sent, or you can choose to turn off all cookies. You do this through your browser settings. If you disable cookies, some features may be disabled, but this will not affect your user experience significantly.</p>
+
+        <h2>6. Your Rights</h2>
+        <p>You have the right to access, correct, or delete your personal information. You may also object to or restrict certain processing of your data. To exercise these rights, please contact us at thecreativesurat@gmail.com.</p>
+
+        <h2>7. Data Retention</h2>
+        <p>We will retain your personal information only for as long as necessary to fulfill the purposes for which it was collected, including for the purposes of satisfying any legal, accounting, or reporting requirements.</p>
+
+        <h2>8. Children's Privacy</h2>
+        <p>Our services are not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe that your child has provided us with personal information, please contact us.</p>
+
+        <h2>9. Changes to Privacy Policy</h2>
+        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "last updated" date at the top of this policy.</p>
+
+        <h2>10. Contact Information</h2>
+        <p>If you have any questions about this Privacy Policy, please contact us at thecreativesurat@gmail.com.</p>
+      </Modal>
     </div>
-  )
+  );
 }

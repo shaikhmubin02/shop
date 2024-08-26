@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button"
 import InteractiveImages from "./InteractiveImages"
+import { DemoVertical } from "./DemoVerticle"
+import Link from "next/link"
 
 export default function Board() {
   return (
@@ -19,14 +21,14 @@ export default function Board() {
             We pride ourselves on our commitment to excellence and personalized approach, working closely with businesses and individuals to craft solutions that drive results and elevate your brand.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Button className="bg-[#8CC63F] hover:bg-[#7AB62F] text-white">Start Your Project Today</Button>
+            <Button className="bg-[#8CC63F] hover:bg-[#7AB62F] text-white"><Link href="#services">Start Your Project Today</Link></Button>
             <Button variant="outline" className="border-[#8CC63F] text-[#8CC63F] hover:bg-[#8CC63F] hover:text-white">
-              Get Creative Solutions
+              <Link href="#portfolio">Get Creative Solutions</Link>
             </Button>
           </div>
         </div>
         <div className="flex-1 mb-30 -ml-6">
-          <InteractiveImages />
+          <DemoVertical />
         </div>
       </div>
     </div>

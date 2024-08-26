@@ -19,8 +19,8 @@ export function MobileNav() {
   const [navItems, setNavItems] = useState([
     { href: '/', label: 'Home' },
     { href: '#services', label: 'Services' },
-    { href: '#Portfolio', label: 'Portfolio' },
-    { href: '#Pricing', label: 'Pricing' },
+    { href: '#portfolio', label: 'Portfolio' },
+    { href: '#pricing', label: 'Pricing' },
     { href: '#contact', label: 'Contact' },
   ]);
 

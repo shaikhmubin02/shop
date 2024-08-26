@@ -30,95 +30,117 @@ const services = [
   { icon: TypeIcon, title: "Typography", description: "Custom typefaces and lettering to enhance your brand's visual language." }
 ]
 
+const backgroundVariants = {
+  animate: {
+    backgroundPosition: ['0% 0%', '100% 100%'],
+    transition: {
+      duration: 15,  // Reduced from 20 to make the movement more noticeable
+      ease: "linear",
+      repeat: Infinity,
+      repeatType: "reverse"
+    }
+  }
+}
+
 export default function GraphicDesignPage() {
   return (
     <motion.div 
-      className="container mx-auto px-4 py-12"
-      variants={pageVariants}
-      initial="initial"
+      className="relative min-h-screen overflow-hidden"
+      variants={backgroundVariants}
       animate="animate"
-      exit="exit"
+      style={{
+        background: 'linear-gradient(45deg, #f3f4f6, #e5e7eb, #d1d5db, #60a5fa, #3b82f6)',  // Added blue tones
+        backgroundSize: '400% 400%'
+      }}
     >
-      <motion.h1 
-        className="text-4xl font-bold mb-8"
-        variants={fadeInUp}
-      >
-        <Link href="/" prefetch={false}>
-          <ChevronLeftIcon className="w-4 h-4 mr-1" />
-        </Link>
-        Graphic Design Services
-      </motion.h1>
-      <motion.p 
-        className="text-xl mb-8 text-muted-foreground"
-        variants={fadeInUp}
-      >
-        Our graphic design services bring your ideas to life with stunning visuals that capture your brand&apos;s essence.
-        From logos to marketing materials, we create designs that leave a lasting impression.
-      </motion.p>
       <motion.div 
-        className="grid md:grid-cols-2 gap-6 mb-12"
-        variants={staggerContainer}
+        className="container mx-auto px-4 py-12 relative z-10"
+        variants={pageVariants}
         initial="initial"
         animate="animate"
+        exit="exit"
       >
-        {services.map((service, index) => (
-          <motion.div
-            key={service.href}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-          <motion.div key={service.title} variants={fadeInUp}>
-            <Card className="cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <service.icon className="mr-2 h-6 w-6" /> {service.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                {service.description}
-              </CardContent>
-            </Card>
-          </motion.div>
-          </motion.div>
-        ))}
-      </motion.div>
-      <motion.div 
-        className="text-center"
-        variants={fadeInUp}
-      >
-        <h2 className="text-2xl font-bold mb-4">Our Design Process</h2>
-        <motion.ol 
-          className="list-decimal list-inside text-left max-w-2xl mx-auto mb-8"
+        <motion.h1 
+          className="text-4xl font-bold mb-8 dark:text-black"
+          variants={fadeInUp}
+        >
+          <Link href="/" prefetch={false}>
+            <ChevronLeftIcon className="w-4 h-4 mr-1 dark:text-black" />
+          </Link>
+          Graphic Design Services
+        </motion.h1>
+        <motion.p 
+          className="text-xl mb-8 text-muted-foreground"
+          variants={fadeInUp}
+        >
+          Our graphic design services bring your ideas to life with stunning visuals that capture your brand&apos;s essence.
+          From logos to marketing materials, we create designs that leave a lasting impression.
+        </motion.p>
+        <motion.div 
+          className="grid md:grid-cols-2 gap-6 mb-12"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
         >
-          {[
-            "Consultation and brief development",
-            "Research and concept creation",
-            "Initial design presentations",
-            "Revisions and refinement",
-            "Final approval and delivery",
-            "Post-project support and guidance"
-          ].map((step, index) => (
-            <motion.li 
-              key={index} 
-              className="mb-2"
-              variants={fadeInUp}
+          {services.map((service, index) => (
+            <motion.div
+              key={service.href}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              {step}
-            </motion.li>
+            <motion.div key={service.title} variants={fadeInUp}>
+              <Card className="cursor-pointer hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <service.icon className="mr-2 h-6 w-6" /> {service.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {service.description}
+                </CardContent>
+              </Card>
+            </motion.div>
+            </motion.div>
           ))}
-        </motion.ol>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-        > 
-        <Link href="/services/graphic-design/form" prefetch={false}>
-          <Button size="lg">Request a Design Consultation</Button>
-        </Link>
+        </motion.div>
+        <motion.div 
+          className="text-center"
+          variants={fadeInUp}
+        >
+          <h2 className="text-2xl font-bold mb-4 dark:text-black">Our Design Process</h2>
+          <motion.ol 
+            className="list-decimal list-inside text-left max-w-2xl mx-auto mb-8 dark:text-black"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+          >
+            {[
+              "Consultation and brief development",
+              "Research and concept creation",
+              "Initial design presentations",
+              "Revisions and refinement",
+              "Final approval and delivery",
+              "Post-project support and guidance"
+            ].map((step, index) => (
+              <motion.li 
+                key={index} 
+                className="mb-2"
+                variants={fadeInUp}
+              >
+                {step}
+              </motion.li>
+            ))}
+          </motion.ol>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+          > 
+          <Link href="/services/graphic-design/form" prefetch={false}>
+            <Button size="lg">Request a Design Consultation</Button>
+          </Link>
+          </motion.div>
         </motion.div>
       </motion.div>
     </motion.div>
