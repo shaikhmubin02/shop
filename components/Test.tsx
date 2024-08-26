@@ -378,11 +378,11 @@ export default function Test( {email}: {email: string}) {
         <h2>7. Data Retention</h2>
         <p>We will retain your personal information only for as long as necessary to fulfill the purposes for which it was collected, including for the purposes of satisfying any legal, accounting, or reporting requirements.</p>
 
-        <h2>8. Children's Privacy</h2>
+        <h2>8. Children&apos;s Privacy</h2>
         <p>Our services are not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe that your child has provided us with personal information, please contact us.</p>
 
         <h2>9. Changes to Privacy Policy</h2>
-        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "last updated" date at the top of this policy.</p>
+        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the &quot;last updated&quot; date at the top of this policy.</p>
 
         <h2>10. Contact Information</h2>
         <p>If you have any questions about this Privacy Policy, please contact us at thecreativesurat@gmail.com.</p>
