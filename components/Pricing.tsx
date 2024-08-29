@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 import { Check, Zap } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 const plans = [
   {
@@ -23,19 +24,59 @@ const plans = [
 ];
 
 export default function Pricing() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [isInView, controls]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-black p-4">
-      <h2 className="text-4xl font-bold text-center mb-8">Choose Your Plan</h2>
-      <div className="flex flex-wrap justify-center gap-8">
+    <div ref={ref} className="flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-black p-4">
+      <motion.h2
+        className="text-4xl font-bold text-center mb-8"
+        variants={itemVariants}
+        initial="hidden"
+        animate={controls}
+      >
+        Choose Your Plan
+      </motion.h2>
+      <motion.div
+        className="flex flex-wrap justify-center gap-8"
+        variants={containerVariants}
+        initial="hidden"
+        animate={controls}
+      >
         {plans.map((plan, index) => (
           <motion.div
             key={plan.name}
             className={`${plan.color} rounded-lg shadow-lg p-6 w-72 text-white`}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.2 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            variants={itemVariants}
           >
             <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
             <p className="text-4xl font-bold mb-6">${plan.price}<span className="text-lg">/mo</span></p>
@@ -46,7 +87,7 @@ export default function Pricing() {
                   className="flex items-center"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.2 + i * 0.1 }}
+                  transition={{ delay: 0.5 + index * 0.2 + i * 0.1 }}
                 >
                   <Check className="mr-2 h-5 w-5" />
                   {feature}
@@ -63,7 +104,7 @@ export default function Pricing() {
             </motion.button>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

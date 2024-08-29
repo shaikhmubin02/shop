@@ -46,7 +46,11 @@ const ReviewCard = ({
   return (
     <figure
       className={cn(
-        "relative h-60 w-56 cursor-pointer overflow-hidden rounded-xl border-2 p-4",
+        "relative cursor-pointer overflow-hidden rounded-xl border-2 p-4",
+        // Mobile styles
+        "h-48 w-44",
+        // Desktop styles (md and up)
+        "md:h-60 md:w-56",
         // light styles
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
         // dark styles
@@ -66,7 +70,7 @@ const ReviewCard = ({
 
 export function DemoVertical() {
   return (
-    <div className="relative flex h-[600px] w-full flex-row items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+    <div className="relative flex h-[400px] md:h-[600px] w-full flex-row items-center justify-center overflow-hidden rounded-lg border bg-background shadow-md md:shadow-xl ml-3 md:ml-0">
       <Marquee pauseOnHover vertical className="[--duration:30s]">
         {firstRow.map((review, index) => (
           <ReviewCard key={`first-${index}`} {...review} />
@@ -77,8 +81,8 @@ export function DemoVertical() {
           <ReviewCard key={`second-${index}`} {...review} />
         ))}
       </Marquee>
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-white dark:from-background"></div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white dark:from-background"></div>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1/4 md:h-1/3 bg-gradient-to-b from-white dark:from-background"></div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 md:h-1/3 bg-gradient-to-t from-white dark:from-background"></div>
     </div>
   );
 }

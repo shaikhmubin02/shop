@@ -24,6 +24,7 @@ import TestimonialSlider from './testimonials-slider'
 import Modal from './Modal'
 import { testimonials } from '@/data/testimonials'
 import { Magiclogo } from './Magiclogo'
+import { BentoGridThirdDemo } from './Bentogrid'
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -225,6 +226,9 @@ export default function Test( {email}: {email: string}) {
         </section>
         <section id='pricing'>
          <Pricing />
+        </section>
+        <section className='w-full py-12 md:py-24 lg:py-32 bg-background'>
+          <BentoGridThirdDemo />
         </section>
         <section
           id="faq"
