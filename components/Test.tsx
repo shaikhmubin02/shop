@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { MobileNav } from './MobileNav'
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import Faqs from './faqs'
-import { SignedIn, SignInButton, UserButton, SignedOut} from '@clerk/nextjs'
+import { SignedIn, SignInButton, UserButton, SignedOut, SignUp} from '@clerk/nextjs'
 import Image from "next/image";
 import Services from './Services'
 import Form from './Form'
@@ -176,6 +176,9 @@ export default function Test( {email}: {email: string}) {
           <SignedIn>
             <UserButton />
           </SignedIn>
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
         </div>
         </div>
       </header>
